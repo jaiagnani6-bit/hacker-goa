@@ -1,0 +1,34 @@
+{
+  "entities": {
+    "User": {
+      "collectionName": "users",
+      "fields": {
+        "uid": { "type": "string", "required": true },
+        "displayName": { "type": "string", "required": false },
+        "email": { "type": "string", "required": false },
+        "photoURL": { "type": "string", "required": false },
+        "createdAt": { "type": "timestamp", "required": true }
+      }
+    },
+    "Pass": {
+      "collectionName": "passes",
+      "fields": {
+        "passCode": { "type": "string", "required": true },
+        "holderName": { "type": "string", "required": true },
+        "handle": { "type": "string", "required": false },
+        "role": { "type": "string", "required": true },
+        "track": { "type": "string", "required": false },
+        "motto": { "type": "string", "required": false },
+        "theme": { "type": "string", "required": false },
+        "imageUrl": { "type": "string", "required": false },
+        "createdBy": { "type": "string", "required": true },
+        "creatorEmail": { "type": "string", "required": false },
+        "creatorPhoto": { "type": "string", "required": false },
+        "verified": { "type": "boolean", "required": true },
+        "verifiedAt": { "type": "timestamp", "required": false },
+        "verifiedBy": { "type": "string", "required": false },
+        "createdAt": { "type": "timestamp", "required": true }
+      }
+    }
+  }
+}

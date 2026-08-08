@@ -1,0 +1,10 @@
+{
+  "name": "Hacker House Goa 2026 PFP Frame Generator",
+  "description": "Create custom Hacker House Goa 2026 profile picture frames and delegate pass cards with tropical Goa vibes, live camera selfie capture, and instant social sharing.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
