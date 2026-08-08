@@ -19,7 +19,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ canvas }) => {
     setShareError(null);
 
     let shareUrl = '';
-    const captionText = 'Just got my #FrameInGoa PFP for HH Goa 2026! 🌴☀️ See you in Goa! (28 - 31 Oct 2026)';
+    const captionText = 'Just got my #FrameInGoa PFP for HH Goa 2026! 🌴☀️ See you in Goa! (29 - 31 Oct 2026)';
 
     try {
       const dataUrl = getCanvasDataUrl(canvas);

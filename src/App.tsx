@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Upload, Share2, Eye, Home, Film, ShieldCheck, CheckCircle2, Database } from 'lucide-react';
+import { Upload, Share2, Eye, Home, Film, ShieldCheck } from 'lucide-react';
 import { Uploader } from './components/Uploader';
 import { FramePreview } from './components/FramePreview';
 import { DownloadButton } from './components/DownloadButton';
@@ -228,7 +228,7 @@ export default function App() {
               <div className="flex items-center gap-2 tracking-wider">
                 <span>GOA, INDIA</span>
                 <span className="text-[#FFE600]">•</span>
-                <span>28 - 31 OCT 2026</span>
+                <span>29 - 31 OCT 2026</span>
               </div>
               <button
                 type="button"
@@ -247,8 +247,8 @@ export default function App() {
         {/* Marquee Ticker Footer */}
         <footer className="w-full bg-[#033E25] border-t border-white/10 py-3 overflow-hidden whitespace-nowrap font-space-mono text-xs text-[#F5D033]/90 z-20">
           <div className="inline-block animate-marquee tracking-wider font-bold">
-            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">August 28-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span> • 
-            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">August 28-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span>
+            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 29-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span> • 
+            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 29-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span>
           </div>
         </footer>
 
@@ -509,28 +509,6 @@ export default function App() {
 
                 {/* 7. Action buttons */}
                 <div className="pt-4 border-t border-white/10 flex flex-col gap-3 font-space-mono">
-                  <button
-                    type="button"
-                    onClick={handleSavePassToFirestore}
-                    disabled={isSavingPass}
-                    className="w-full py-3 bg-[#10b981] hover:bg-[#059669] text-black font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
-                  >
-                    {isSavingPass ? (
-                      <span className="inline-block animate-spin">⌛</span>
-                    ) : (
-                      <Database className="w-4 h-4 text-black" />
-                    )}
-                    <span>{savedPassCode ? `SAVED (${savedPassCode})` : 'Save to Database & Verify'}</span>
-                  </button>
-
-                  {savedPassCode && (
-                    <div className="bg-[#10b981]/15 border border-[#10b981]/50 rounded-xl p-3 flex items-center justify-between text-xs text-[#10b981]">
-                      <span className="flex items-center gap-1.5 font-bold">
-                        <CheckCircle2 className="w-4 h-4" /> Code: {savedPassCode}
-                      </span>
-                    </div>
-                  )}
-
                   <DownloadButton canvas={currentCanvas} />
                   <ShareButton canvas={currentCanvas} />
                 </div>

@@ -135,7 +135,7 @@ app.get('/i/:id', (req, res) => {
   <title>HH Goa 2026 Profile Picture #FrameInGoa</title>
   
   <meta name="title" content="HH Goa 2026 Profile Picture #FrameInGoa" />
-  <meta name="description" content="Official Hacker House Goa 2026 Branded PFP Graphic (28 - 31 Oct 2026). Create yours now!" />
+  <meta name="description" content="Official Hacker House Goa 2026 Branded PFP Graphic (29 - 31 Oct 2026). Create yours now!" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${shareUrl}" />
@@ -251,7 +251,7 @@ app.get('/i/:id', (req, res) => {
   <div class="container">
     <span class="tag">HACKER HOUSE GOA 2026</span>
     <h1>#FrameInGoa Profile Picture</h1>
-    <p>Goa, India • 28 - 31 Oct 2026</p>
+    <p>Goa, India • 29 - 31 Oct 2026</p>
     
     <div class="image-preview">
       <img src="${imageUrl}" alt="HH Goa 2026 Branded PFP" />
