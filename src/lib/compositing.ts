@@ -1,4 +1,5 @@
 import { FrameStyle, RoleBadge, TransformState, IdCardDetails } from '../types';
+import QRCode from 'qrcode';
 
 export const CANVAS_SIZE = 1200;
 
@@ -714,13 +715,20 @@ export async function compositeIDCardImage(
 
   // Outer glowing frame border
   ctx.save();
+  const themeKey = (details.theme || 'classic').toLowerCase();
   const frameColor =
-    details.theme === 'sunset'
-      ? '#FF6B00'
-      : details.theme === 'holo'
+    themeKey === 'sunset'
+      ? '#F97316'
+      : themeKey === 'holo'
       ? '#EC4899'
-      : details.theme === 'cyber'
+      : themeKey === 'cyber'
       ? '#10B981'
+      : themeKey === 'minimal'
+      ? '#E2E8F0'
+      : themeKey === 'bold' || themeKey === 'badge'
+      ? '#F59E0B'
+      : themeKey === 'poster'
+      ? '#FACC15'
       : '#FFD700';
 
   ctx.strokeStyle = frameColor;
@@ -754,7 +762,7 @@ export async function compositeIDCardImage(
   }
 
   // 8. Footer Barcode & QR Code Section
-  drawFooterPassMeta(ctx, details);
+  await drawFooterPassMeta(ctx, details);
 
   return canvas;
 }
@@ -773,24 +781,40 @@ function drawIDCardBackground(ctx: CanvasRenderingContext2D, theme: string) {
   const cardR = 40;
 
   // Create Theme Gradient
+  const t = (theme || 'classic').toLowerCase();
   let gradient: CanvasGradient;
-  if (theme === 'sunset') {
+  if (t === 'sunset') {
     gradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardH);
-    gradient.addColorStop(0, '#2E083B');
-    gradient.addColorStop(0.5, '#4A122E');
+    gradient.addColorStop(0, '#3B0764');
+    gradient.addColorStop(0.5, '#701A75');
     gradient.addColorStop(1, '#1A0413');
-  } else if (theme === 'holo') {
+  } else if (t === 'holo') {
     gradient = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
-    gradient.addColorStop(0, '#111827');
-    gradient.addColorStop(0.5, '#1E1B4B');
+    gradient.addColorStop(0, '#0F172A');
+    gradient.addColorStop(0.5, '#312E81');
     gradient.addColorStop(1, '#030712');
-  } else if (theme === 'cyber') {
+  } else if (t === 'cyber') {
     gradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardH);
     gradient.addColorStop(0, '#0F172A');
     gradient.addColorStop(0.5, '#064E3B');
     gradient.addColorStop(1, '#022C22');
+  } else if (t === 'minimal') {
+    gradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardH);
+    gradient.addColorStop(0, '#1E293B');
+    gradient.addColorStop(0.5, '#0F172A');
+    gradient.addColorStop(1, '#020617');
+  } else if (t === 'bold' || t === 'badge') {
+    gradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardH);
+    gradient.addColorStop(0, '#1C1917');
+    gradient.addColorStop(0.5, '#292524');
+    gradient.addColorStop(1, '#0C0A09');
+  } else if (t === 'poster') {
+    gradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardH);
+    gradient.addColorStop(0, '#450A0A');
+    gradient.addColorStop(0.5, '#7C2D12');
+    gradient.addColorStop(1, '#180805');
   } else {
-    // Emerald
+    // Emerald / Classic
     gradient = ctx.createRadialGradient(500, 500, 100, 500, 700, 800);
     gradient.addColorStop(0, '#0F523E');
     gradient.addColorStop(0.6, '#0B3D2E');
@@ -804,12 +828,18 @@ function drawIDCardBackground(ctx: CanvasRenderingContext2D, theme: string) {
 
   // Card Outer Stroke Border
   const borderColor =
-    theme === 'sunset'
-      ? '#FF6B00'
-      : theme === 'holo'
+    t === 'sunset'
+      ? '#F97316'
+      : t === 'holo'
       ? '#38BDF8'
-      : theme === 'cyber'
+      : t === 'cyber'
       ? '#10B981'
+      : t === 'minimal'
+      ? '#E2E8F0'
+      : t === 'bold' || t === 'badge'
+      ? '#F59E0B'
+      : t === 'poster'
+      ? '#FACC15'
       : '#FFD700';
 
   ctx.strokeStyle = borderColor;
@@ -923,7 +953,21 @@ function drawParticipantInfo(ctx: CanvasRenderingContext2D, details: IdCardDetai
   // X / Social Handle
   const handleY = 768;
   const handleText = details.handle.startsWith('@') ? details.handle : `@${details.handle.trim() || 'builder'}`;
-  ctx.fillStyle = details.theme === 'sunset' ? '#FFD700' : '#34D399';
+  const t = (details.theme || 'classic').toLowerCase();
+  ctx.fillStyle =
+    t === 'sunset'
+      ? '#FFD700'
+      : t === 'cyber'
+      ? '#34D399'
+      : t === 'holo'
+      ? '#38BDF8'
+      : t === 'minimal'
+      ? '#94A3B8'
+      : t === 'bold' || t === 'badge'
+      ? '#FBBF24'
+      : t === 'poster'
+      ? '#FDE047'
+      : '#34D399';
   ctx.font = '700 28px monospace';
   ctx.fillText(handleText, 500, handleY);
 
@@ -1019,7 +1063,7 @@ function drawMottoSection(ctx: CanvasRenderingContext2D, motto: string) {
   ctx.restore();
 }
 
-function drawFooterPassMeta(ctx: CanvasRenderingContext2D, details: IdCardDetails) {
+async function drawFooterPassMeta(ctx: CanvasRenderingContext2D, details: IdCardDetails) {
   ctx.save();
 
   const footerY = 960;
@@ -1051,11 +1095,11 @@ function drawFooterPassMeta(ctx: CanvasRenderingContext2D, details: IdCardDetail
   ctx.font = '600 16px system-ui';
   ctx.fillText('GOA, INDIA • OCT 29-31 2026', barcodeX, barcodeY + 205);
 
-  // Right Side: Generated QR Code Matrix
+  // Right Side: Real Generated QR Code Matrix
   const qrSize = 190;
   const qrX = footerX + footerW - qrSize - 40;
   const qrY = footerY + 35;
-  drawQRCodeMatrix(ctx, qrX, qrY, qrSize, details.handle);
+  await drawQRCodeMatrix(ctx, qrX, qrY, qrSize, details.handle);
 
   ctx.restore();
 }
@@ -1093,69 +1137,53 @@ function drawBarcodeGraphic(
   ctx.restore();
 }
 
-function drawQRCodeMatrix(
+async function drawQRCodeMatrix(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
   size: number,
-  seedText: string
+  handle: string
 ) {
   ctx.save();
 
-  // QR Container Background
+  // QR Container White Card
   ctx.fillStyle = '#FFFFFF';
-  drawRoundRectPath(ctx, x, y, size, size, 12);
+  drawRoundRectPath(ctx, x, y, size, size, 16);
   ctx.fill();
 
   ctx.strokeStyle = '#FFD700';
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  // Grid Matrix
-  const modules = 19;
-  const cellSize = (size - 24) / modules;
-  const startX = x + 12;
-  const startY = y + 12;
-
-  ctx.fillStyle = '#093326';
-
-  for (let r = 0; r < modules; r++) {
-    for (let c = 0; c < modules; c++) {
-      // Corner finder patterns (3 corners)
-      const isTopLeft = r < 5 && c < 5;
-      const isTopRight = r < 5 && c >= modules - 5;
-      const isBottomLeft = r >= modules - 5 && c < 5;
-
-      if (isTopLeft || isTopRight || isBottomLeft) {
-        // Draw Finder Squares
-        if (
-          (r === 0 || r === 4 || c === 0 || c === 4) && isTopLeft ||
-          (r === 0 || r === 4 || c === modules - 5 || c === modules - 1) && isTopRight ||
-          (r === modules - 5 || r === modules - 1 || c === 0 || c === 4) && isBottomLeft
-        ) {
-          ctx.fillRect(startX + c * cellSize, startY + r * cellSize, cellSize, cellSize);
-        } else if (
-          (r >= 1 && r <= 3 && c >= 1 && c <= 3) && isTopLeft ||
-          (r >= 1 && r <= 3 && c >= modules - 4 && c <= modules - 2) && isTopRight ||
-          (r >= modules - 4 && r <= modules - 2 && c >= 1 && c <= 3) && isBottomLeft
-        ) {
-          ctx.fillRect(startX + c * cellSize, startY + r * cellSize, cellSize, cellSize);
-        }
-      } else {
-        // Pseudo data bits derived from seed text
-        const hash = (r * 31 + c * 17 + (seedText.charCodeAt((r + c) % (seedText.length || 1)) || 7)) % 100;
-        if (hash > 45) {
-          ctx.fillRect(startX + c * cellSize, startY + r * cellSize, cellSize - 0.5, cellSize - 0.5);
-        }
-      }
-    }
+  // Formulate real scannable payload URL
+  let targetUrl = (handle || '').trim();
+  if (!targetUrl) {
+    targetUrl = 'https://x.com/hackerhousegoa';
+  } else if (targetUrl.startsWith('@')) {
+    targetUrl = `https://x.com/${targetUrl.slice(1)}`;
+  } else if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+    targetUrl = `https://x.com/${targetUrl}`;
   }
 
-  // Center Mini Emblem Dot
-  ctx.fillStyle = '#FF007A';
-  ctx.beginPath();
-  ctx.arc(x + size / 2, y + size / 2, 12, 0, Math.PI * 2);
-  ctx.fill();
+  try {
+    const tempCanvas = document.createElement('canvas');
+    const innerPadding = 14;
+    const qrDrawSize = size - innerPadding * 2;
+
+    await QRCode.toCanvas(tempCanvas, targetUrl, {
+      width: qrDrawSize,
+      margin: 1,
+      color: {
+        dark: '#033E25', // Deep Goa Emerald modules
+        light: '#FFFFFF',
+      },
+      errorCorrectionLevel: 'M',
+    });
+
+    ctx.drawImage(tempCanvas, x + innerPadding, y + innerPadding, qrDrawSize, qrDrawSize);
+  } catch (err) {
+    console.error('QR code generation failed:', err);
+  }
 
   ctx.restore();
 }

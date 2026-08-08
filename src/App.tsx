@@ -447,24 +447,30 @@ export default function App() {
                   />
                 </div>
 
-                {/* 4. FRAME STYLE */}
+                {/* 4. FRAME STYLE / THEME */}
                 <div>
                   <label className="block text-xs font-space-mono font-bold text-[#F5D033] uppercase mb-2 tracking-wider">
-                    Frame Style
+                    Frame Style / Theme
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {(['classic', 'minimal', 'bold'] as FrameStyle[]).map((st) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                      { id: 'classic', label: 'Emerald' },
+                      { id: 'cyber', label: 'Cyber' },
+                      { id: 'sunset', label: 'Sunset' },
+                      { id: 'holo', label: 'Holo' },
+                      { id: 'minimal', label: 'Minimal' },
+                    ].map((st) => (
                       <button
-                        key={st}
+                        key={st.id}
                         type="button"
-                        onClick={() => setFrameStyle(st)}
-                        className={`py-2 px-3 rounded-lg text-xs font-space-mono font-bold uppercase border transition-all cursor-pointer ${
-                          frameStyle === st
-                            ? 'bg-[#F5D033] text-[#045E38] border-[#F5D033] font-black shadow-md'
-                            : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'
+                        onClick={() => setFrameStyle(st.id as FrameStyle)}
+                        className={`py-2 px-3 rounded-lg text-xs font-space-mono font-bold uppercase border transition-all cursor-pointer text-center ${
+                          frameStyle === st.id
+                            ? 'bg-[#F5D033] text-[#045E38] border-[#F5D033] font-black shadow-md scale-105'
+                            : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
                         }`}
                       >
-                        {st}
+                        {st.label}
                       </button>
                     ))}
                   </div>

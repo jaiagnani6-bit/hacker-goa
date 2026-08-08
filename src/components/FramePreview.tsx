@@ -10,6 +10,8 @@ import {
   Image as ImageIconLucide,
 } from 'lucide-react';
 import { compositePFPImage, compositeIDCardImage } from '../lib/compositing';
+import { DownloadButton } from './DownloadButton';
+import { ShareButton } from './ShareButton';
 import {
   FrameOption,
   FrameStyle,
@@ -351,8 +353,12 @@ export const FramePreview: React.FC<FramePreviewProps> = ({
       ) : (
         /* PFP FRAME TAB VIEW: 2-Column Grid with Left Canvas & Right PFP FRAME COMPOSITION Panel */
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-6 flex flex-col items-center">
+          <div className="lg:col-span-6 flex flex-col items-center gap-4">
             {renderCanvasSlot()}
+            <div className="w-full max-w-[420px] flex flex-col gap-2 font-space-mono">
+              <DownloadButton canvas={canvasRef.current} />
+              <ShareButton canvas={canvasRef.current} />
+            </div>
           </div>
 
           <div className="lg:col-span-6 space-y-6 bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
@@ -463,6 +469,12 @@ export const FramePreview: React.FC<FramePreviewProps> = ({
                   );
                 })}
               </div>
+            </div>
+
+            {/* Download & Share Actions */}
+            <div className="pt-4 border-t border-white/10 flex flex-col gap-3 font-space-mono">
+              <DownloadButton canvas={canvasRef.current} />
+              <ShareButton canvas={canvasRef.current} />
             </div>
           </div>
         </div>
