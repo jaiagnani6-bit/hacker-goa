@@ -114,15 +114,6 @@ export const HypeModal: React.FC<HypeModalProps> = ({ isOpen, onClose }) => {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => setShowInputBar(!showInputBar)}
-              className="px-3 py-1.5 bg-black/40 hover:bg-black/60 border border-white/20 rounded-lg text-xs font-bold text-white transition-all flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
-            >
-              <LinkIcon className="w-3.5 h-3.5 text-[#F5D033]" />
-              <span>{showInputBar ? 'Hide Video Source' : 'Change Video / Paste URL'}</span>
-            </button>
-
-            <button
-              type="button"
               onClick={onClose}
               className="w-9 h-9 bg-red-600/80 hover:bg-red-600 text-white rounded-xl flex items-center justify-center shadow-lg transition-all cursor-pointer font-bold border border-white/30"
               title="Close Modal"
@@ -131,60 +122,6 @@ export const HypeModal: React.FC<HypeModalProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
         </div>
-
-        {/* Optional URL Paste & Upload Input Bar */}
-        {showInputBar && (
-          <div className="p-4 bg-black/70 border-b border-white/10 space-y-3 animate-fadeIn">
-            <form onSubmit={handleApplyUrl} className="flex flex-col sm:flex-row gap-2">
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={inputUrl}
-                  onChange={(e) => setInputUrl(e.target.value)}
-                  placeholder="Paste YouTube or video URL here (e.g. https://youtu.be/... or .mp4 link)"
-                  className="w-full px-3.5 py-2.5 bg-white/10 border border-white/20 rounded-xl text-xs font-mono text-white placeholder-white/40 focus:outline-none focus:border-[#F5D033]"
-                />
-              </div>
-
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={handlePasteClipboard}
-                  className="px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-xs uppercase tracking-wider cursor-pointer flex items-center gap-1"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#F5D033]" />
-                  Paste
-                </button>
-
-                <button
-                  type="submit"
-                  className="px-4 py-2.5 bg-[#F5D033] hover:bg-[#ffe252] text-[#045E38] font-black rounded-xl text-xs uppercase tracking-wider cursor-pointer shadow-md"
-                >
-                  Load Video
-                </button>
-              </div>
-            </form>
-
-            <div className="flex items-center justify-between text-xs text-white/60">
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
-                <Upload className="w-3.5 h-3.5 text-[#F5D033]" />
-                <span>Or upload video from computer (.mp4, .webm, .mov)</span>
-                <input
-                  type="file"
-                  accept="video/*"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
-              </label>
-
-              {statusMsg && (
-                <span className="text-[#10b981] font-bold flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5" /> {statusMsg}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
 
         {/* Video Player Display Area */}
         <div className="aspect-video w-full bg-black relative flex items-center justify-center overflow-hidden">

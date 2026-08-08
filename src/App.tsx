@@ -167,29 +167,11 @@ export default function App() {
           <div className="flex items-center gap-2 sm:gap-3 font-space-mono flex-wrap justify-end">
             <button
               type="button"
-              onClick={() => setShowIntro(true)}
-              className="px-3 py-2 bg-[#FF007F]/20 hover:bg-[#FF007F]/40 border border-[#FF007F]/50 rounded-lg text-xs sm:text-sm font-bold text-[#FF007F] hover:text-white transition-all flex items-center gap-1.5 backdrop-blur-md cursor-pointer uppercase tracking-wider"
-            >
-              <Film className="w-4 h-4 text-[#FF007F]" />
-              <span className="hidden sm:inline">REPLAY</span> INTRO
-            </button>
-
-            <button
-              type="button"
               onClick={() => setShowHypeModal(true)}
               className="px-3.5 py-2 bg-black/40 hover:bg-black/60 border border-white/20 rounded-lg text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-md cursor-pointer uppercase tracking-wider"
             >
               <Eye className="w-4 h-4 text-[#F5D033]" />
               CHECK HYPE
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setIsVerifyOpen(true)}
-              className="px-3.5 py-2 bg-black/40 hover:bg-black/60 border border-white/20 rounded-lg text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-1.5 backdrop-blur-md cursor-pointer uppercase tracking-wider"
-            >
-              <ShieldCheck className="w-4 h-4 text-[#F5D033]" />
-              VERIFY
             </button>
 
             <button
@@ -546,13 +528,6 @@ export default function App() {
                       <span className="flex items-center gap-1.5 font-bold">
                         <CheckCircle2 className="w-4 h-4" /> Code: {savedPassCode}
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => handleOpenVerifyWithCode(savedPassCode)}
-                        className="underline hover:text-white text-[11px] font-bold cursor-pointer"
-                      >
-                        Verify Now
-                      </button>
                     </div>
                   )}
 
