@@ -11,6 +11,7 @@ import { FrameStyle, RoleBadge, UploadedImage, GeneratorMode, IdCardDetails } fr
 import { savePassToDatabase } from './lib/firebase';
 import pfpGenBgUrl from './assets/images/pfp_gen_bg_1786130918771.jpg';
 import goaBgUrl from './assets/images/goa_hacker_house_bg_1786130749646.jpg';
+import tropicalBgUrl from './assets/images/tropical_beach_hero_bg.jpg';
 import bannerBgUrl from './assets/images/hacker_house_banner_bg_1786130906845.jpg';
 
 type ViewMode = 'home' | 'generator' | 'loading';
@@ -186,15 +187,20 @@ export default function App() {
         {/* Main Hero Poster Section */}
         <main className="w-full max-w-6xl mx-auto px-4 sm:px-8 my-auto py-4 z-10 flex flex-col items-center">
           <div className="w-full bg-[#0A6B37] bg-grain border-4 border-[#FFE600]/50 rounded-3xl p-6 sm:p-10 relative shadow-2xl overflow-hidden flex flex-col items-center justify-between min-h-[580px] sm:min-h-[640px]">
-            {/* Background Image Layer with 70% opacity */}
+            {/* Tropical Beach Illustration Background with Dark Green Translucent Overlay */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
               <img
-                src={goaBgUrl}
-                alt="Goa Beach Scene Background"
+                src={tropicalBgUrl}
+                alt="Tropical Beach Illustration Background"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-bottom opacity-70 mix-blend-overlay scale-105"
+                className="w-full h-full object-cover object-center scale-105"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#0A6B37]/60 via-[#0A6B37]/40 to-[#0A6B37]/80" />
+              <div
+                className="absolute inset-0"
+                style={{ backgroundColor: 'rgba(6, 45, 25, 0.85)', mixBlendMode: 'multiply' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0A6B37]/50 via-transparent to-[#0A6B37]/60 pointer-events-none" />
             </div>
 
             {/* Background Ambient Lighting */}
