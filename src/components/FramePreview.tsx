@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 import { compositePFPImage, compositeIDCardImage } from '../lib/compositing';
 import { DownloadButton } from './DownloadButton';
-import { ShareButton } from './ShareButton';
 import {
   FrameOption,
   FrameStyle,
@@ -357,7 +356,6 @@ export const FramePreview: React.FC<FramePreviewProps> = ({
             {renderCanvasSlot()}
             <div className="w-full max-w-[420px] flex flex-col gap-2 font-space-mono">
               <DownloadButton canvas={canvasRef.current} />
-              <ShareButton canvas={canvasRef.current} />
             </div>
           </div>
 
@@ -471,10 +469,9 @@ export const FramePreview: React.FC<FramePreviewProps> = ({
               </div>
             </div>
 
-            {/* Download & Share Actions */}
+            {/* Download Actions */}
             <div className="pt-4 border-t border-white/10 flex flex-col gap-3 font-space-mono">
               <DownloadButton canvas={canvasRef.current} />
-              <ShareButton canvas={canvasRef.current} />
             </div>
           </div>
         </div>

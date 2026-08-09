@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Upload, Share2, Eye, Home, Film, ShieldCheck } from 'lucide-react';
+import { Upload, Eye, Home, Film, ShieldCheck } from 'lucide-react';
 import { Uploader } from './components/Uploader';
 import { FramePreview } from './components/FramePreview';
 import { DownloadButton } from './components/DownloadButton';
-import { ShareButton } from './components/ShareButton';
 import { CinematicIntro } from './components/CinematicIntro';
 import { VerifyModal } from './components/VerifyModal';
 import { PassesDatabaseModal } from './components/PassesDatabaseModal';
@@ -306,34 +305,7 @@ export default function App() {
           </p>
         </div>
 
-        {/* Mode Switcher Tabs */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 font-space-mono max-w-md mx-auto bg-black/20 p-1.5 rounded-2xl border border-white/10">
-          <button
-            type="button"
-            onClick={handleSelectUploadTab}
-            className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
-              activeTab === 'upload'
-                ? 'bg-[#F5D033] text-[#045E38] shadow-md font-black'
-                : 'text-white/70 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Upload className="w-3.5 h-3.5" />
-            Upload Photo
-          </button>
 
-          <button
-            type="button"
-            onClick={handleSelectShareTab}
-            className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
-              activeTab === 'share'
-                ? 'bg-[#F5D033] text-[#045E38] shadow-md font-black'
-                : 'text-white/70 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Share2 className="w-3.5 h-3.5" />
-            Share Pass
-          </button>
-        </div>
 
         {!selectedImage ? (
           /* Form Input Card */
@@ -516,7 +488,6 @@ export default function App() {
                 {/* 7. Action buttons */}
                 <div className="pt-4 border-t border-white/10 flex flex-col gap-3 font-space-mono">
                   <DownloadButton canvas={currentCanvas} />
-                  <ShareButton canvas={currentCanvas} />
                 </div>
               </div>
             </div>

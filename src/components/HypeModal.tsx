@@ -190,7 +190,6 @@ export const HypeModal: React.FC<HypeModalProps> = ({ isOpen, onClose }) => {
             <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
             GOA HACKER HOUSE 2026 // LIVE HYPE
           </span>
-          <span>Click outside or X to close</span>
         </div>
 
       </div>
