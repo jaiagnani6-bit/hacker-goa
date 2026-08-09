@@ -228,7 +228,7 @@ export default function App() {
               <div className="flex items-center gap-2 tracking-wider">
                 <span>GOA, INDIA</span>
                 <span className="text-[#FFE600]">•</span>
-                <span>29 - 31 OCT 2026</span>
+                <span>28 - 31 OCT 2026</span>
               </div>
               <button
                 type="button"
@@ -247,8 +247,8 @@ export default function App() {
         {/* Marquee Ticker Footer */}
         <footer className="w-full bg-[#033E25] border-t border-white/10 py-3 overflow-hidden whitespace-nowrap font-space-mono text-xs text-[#F5D033]/90 z-20">
           <div className="inline-block animate-marquee tracking-wider font-bold">
-            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 29-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span> • 
-            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 29-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span>
+            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 28-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span> • 
+            <span className="mx-6">#FrameInGoa</span> • <span className="mx-6">HH GOA 2026</span> • <span className="mx-6">October 28-31, 2026</span> • <span className="mx-6">Goa, India</span> • <span className="mx-6">Built for HH Goa 2026 Builders & attendees.</span>
           </div>
         </footer>
 

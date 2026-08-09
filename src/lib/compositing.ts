@@ -409,13 +409,13 @@ function drawBottomBrandingCard(ctx: CanvasRenderingContext2D, roleBadge: RoleBa
   ctx.fillText('GOA 2026  •  गोवा', 600, cardY + 105);
   ctx.restore();
 
-  // 3. Subtitle: GOA, INDIA • 29 - 31 OCT 2026
+  // 3. Subtitle: GOA, INDIA • 28 - 31 OCT 2026
   ctx.fillStyle = '#E2E8F0';
   ctx.font = '700 20px monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   setCanvasLetterSpacing(ctx, '2px');
-  ctx.fillText('GOA, INDIA   •   OCTOBER 29 - 31, 2026', 600, cardY + 150);
+  ctx.fillText('GOA, INDIA   •   OCTOBER 28 - 31, 2026', 600, cardY + 150);
 
   // 4. Optional Role Badge Tag
   if (roleBadge !== 'NONE') {
@@ -453,7 +453,7 @@ function drawBottomBadgeBanner(ctx: CanvasRenderingContext2D, roleBadge: RoleBad
   // Date
   ctx.fillStyle = '#E2E8F0';
   ctx.font = '700 20px monospace';
-  ctx.fillText('OCT 29 - 31, 2026  •  GOA, INDIA', 600, cardY + 142);
+  ctx.fillText('OCT 28 - 31, 2026  •  GOA, INDIA', 600, cardY + 142);
 
   if (roleBadge !== 'NONE') {
     drawRoleBadgePill(ctx, roleBadge, 600, cardY + 186);
@@ -502,7 +502,7 @@ function drawCyberBeachBottomOverlay(ctx: CanvasRenderingContext2D, roleBadge: R
 
   ctx.fillStyle = '#FFF';
   ctx.font = '700 20px monospace';
-  ctx.fillText('GOA, INDIA  •  29 - 31 OCT 2026', 600, y + 155);
+  ctx.fillText('GOA, INDIA  •  28 - 31 OCT 2026', 600, y + 155);
 
   if (roleBadge !== 'NONE') {
     drawRoleBadgePill(ctx, roleBadge, 600, y + 198);
@@ -528,7 +528,7 @@ function drawMinimalBottomText(ctx: CanvasRenderingContext2D, roleBadge: RoleBad
 
   ctx.fillStyle = '#FFE81A';
   ctx.font = '700 18px monospace';
-  ctx.fillText('GOA, INDIA  •  29-31 OCT 2026', 600, y + 70);
+  ctx.fillText('GOA, INDIA  •  28-31 OCT 2026', 600, y + 70);
 
   if (roleBadge !== 'NONE') {
     drawRoleBadgePill(ctx, roleBadge, 600, y + 112);
@@ -551,7 +551,7 @@ function drawPosterHeader(ctx: CanvasRenderingContext2D) {
 
   ctx.fillStyle = '#FFFFFF';
   ctx.font = '700 18px monospace';
-  ctx.fillText('29 - 31 OCT 2026  •  GOA, INDIA', 600, 142);
+  ctx.fillText('28 - 31 OCT 2026  •  GOA, INDIA', 600, 142);
   ctx.restore();
 }
 
@@ -1093,7 +1093,7 @@ async function drawFooterPassMeta(ctx: CanvasRenderingContext2D, details: IdCard
 
   ctx.fillStyle = '#94A3B8';
   ctx.font = '600 16px system-ui';
-  ctx.fillText('GOA, INDIA • OCT 29-31 2026', barcodeX, barcodeY + 205);
+  ctx.fillText('GOA, INDIA • OCT 28-31 2026', barcodeX, barcodeY + 205);
 
   // Right Side: Real Generated QR Code Matrix
   const qrSize = 190;
